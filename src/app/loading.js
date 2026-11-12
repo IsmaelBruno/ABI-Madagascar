@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { WanderingEyes } from "@/components/loading-ui/wandering-eyes";
 
 export default function Loading() {
@@ -5,12 +6,13 @@ export default function Loading() {
     <div className="loading-splash">
       <div className="loading-content">
         {/* Favicon */}
-        <img
+        <Image
           src="/favicon-32x32.png"
           alt="ABI-MDG"
           className="loading-favicon"
           width="56"
           height="56"
+          priority
         />
 
         <h2 className="loading-title">

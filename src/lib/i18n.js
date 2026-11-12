@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useSyncExternalStore } from "react";
 
 export const LANGUAGES = [
   { code: "en", label: "ENG", full: "English" },
@@ -1024,6 +1024,24 @@ export const translations = {
   },
 };
 
+function subscribeLanguage(onChange) {
+  window.addEventListener("folio-lang-change", onChange);
+  window.addEventListener("storage", onChange);
+  return () => {
+    window.removeEventListener("folio-lang-change", onChange);
+    window.removeEventListener("storage", onChange);
+  };
+}
+
+function getLanguageSnapshot() {
+  const saved = window.localStorage.getItem("bruno-portfolio-lang");
+  return saved === "en" || saved === "mg" || saved === "fr" ? saved : "en";
+}
+
+function getServerLanguageSnapshot() {
+  return "en";
+}
+
 const LanguageContext = createContext({
   lang: "en",
   setLang: () => {},
@@ -1031,20 +1049,13 @@ const LanguageContext = createContext({
 });
 
 export function LanguageProvider({ children }) {
-  // Par défaut 'en' comme demandé par l'utilisateur
-  const [lang, setLangState] = useState("en");
-
-  useEffect(() => {
-    const saved = window.localStorage.getItem("bruno-portfolio-lang");
-    if (saved && (saved === "en" || saved === "mg" || saved === "fr")) {
-      setLangState(saved);
-    } else {
-      setLangState("en");
-    }
-  }, []);
+  const lang = useSyncExternalStore(
+    subscribeLanguage,
+    getLanguageSnapshot,
+    getServerLanguageSnapshot
+  );
 
   const setLang = (newLang) => {
-    setLangState(newLang);
     window.localStorage.setItem("bruno-portfolio-lang", newLang);
     window.dispatchEvent(new CustomEvent("folio-lang-change", { detail: newLang }));
   };

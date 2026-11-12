@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import {
   ArrowDownRight,
   ArrowRight,
@@ -242,12 +243,14 @@ export function ExperienceSection() {
                   <small>{hackathon.date}</small>
                 </p>
               ))}
-              <img
+              <Image
                 src="/coding.gif"
                 alt="Illustration coding / hackathon"
                 className="award-gif"
+                width={1000}
+                height={756}
+                unoptimized
                 loading="lazy"
-                decoding="async"
               />
             </div>
           </Reveal>

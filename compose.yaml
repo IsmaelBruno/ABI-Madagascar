@@ -1,8 +1,9 @@
 services:
-  portfolio:
+  abi-mdg:
     build:
       context: .
       dockerfile: Dockerfile
+    container_name: ABI-MDG
     ports:
       - "${PORTFOLIO_PORT:-3000}:3000"
     restart: unless-stopped

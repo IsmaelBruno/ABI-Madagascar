@@ -15,7 +15,7 @@
   --surface: #fbfcfa;
   --accent: oklch(0.97 0 0);
   --teal: #82cbbb;
-  --font-display: var(--font-geist-sans), "Trebuchet MS", sans-serif;
+  --font-display: var(--font-poppins), "Trebuchet MS", sans-serif;
   --font-mono: var(--font-geist-mono), "Courier New", monospace;
   color-scheme: light;
   --background: oklch(1 0 0);

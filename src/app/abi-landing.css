@@ -1,0 +1,3190 @@
+.abi-site {
+  --abi-ink: #f0eee9;
+  --abi-muted: #a7a49f;
+  --abi-dim: #777672;
+  --abi-bg: #111211;
+  --abi-panel: #181917;
+  --abi-panel-raised: #20211e;
+  --abi-line: rgba(235, 230, 219, 0.14);
+  --abi-warm: #d7b58b;
+  --abi-sage: #aab8a3;
+  min-height: 100vh;
+  overflow: clip;
+  color: var(--abi-ink);
+  background: var(--abi-bg);
+  color-scheme: dark;
+  font-family: var(--font-poppins), "Avenir Next", sans-serif;
+  font-size: 14px;
+  line-height: 1.65;
+  transition: background-color 250ms ease, color 250ms ease;
+}
+
+.abi-site[data-abi-theme="light"] {
+  --abi-ink: #24231f;
+  --abi-muted: #6f6b64;
+  --abi-dim: #89847c;
+  --abi-bg: #efede8;
+  --abi-panel: #f7f5f0;
+  --abi-panel-raised: #e8e4dc;
+  --abi-line: rgba(35, 33, 28, 0.15);
+  --abi-warm: #9c7145;
+  --abi-sage: #60735d;
+  color-scheme: light;
+}
+
+.abi-site *,
+.abi-site *::before,
+.abi-site *::after {
+  box-sizing: border-box;
+}
+
+.abi-site a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.abi-site button,
+.abi-site input,
+.abi-site select,
+.abi-site textarea {
+  color: inherit;
+  font: inherit;
+}
+
+.abi-container {
+  width: min(1240px, calc(100% - 88px));
+  margin-inline: auto;
+}
+
+.abi-skip-link {
+  position: fixed;
+  z-index: 100;
+  top: 12px;
+  left: 12px;
+  padding: 10px 14px;
+  transform: translateY(-160%);
+  color: #141412 !important;
+  background: #e8c99e;
+}
+
+.abi-skip-link:focus {
+  transform: translateY(0);
+}
+
+.abi-header {
+  position: sticky;
+  z-index: 30;
+  top: 0;
+  border-bottom: 1px solid var(--abi-line);
+  background: color-mix(in srgb, var(--abi-bg) 86%, transparent);
+  backdrop-filter: blur(18px);
+}
+
+.abi-nav {
+  position: relative;
+  display: flex;
+  min-height: 73px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.abi-brand {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+}
+
+.abi-brand-monogram {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+}
+
+.abi-brand-monogram > span {
+  padding-inline: 5px;
+  color: var(--abi-warm);
+}
+
+.abi-nav-links,
+.abi-nav-actions {
+  display: flex;
+  align-items: center;
+}
+
+.abi-nav-links {
+  gap: clamp(22px, 3.2vw, 45px);
+  color: var(--abi-muted);
+  font-size: 11px;
+}
+
+.abi-nav-links > a {
+  transition: color 180ms ease;
+}
+
+.abi-nav-links > a:hover,
+.abi-footer a:hover {
+  color: var(--abi-warm);
+}
+
+.abi-nav-actions {
+  gap: 12px;
+}
+
+.abi-theme-button,
+.abi-menu-button {
+  display: grid;
+  width: 37px;
+  height: 37px;
+  flex: 0 0 auto;
+  place-items: center;
+  border: 1px solid var(--abi-line);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--abi-muted) !important;
+  cursor: pointer;
+  transition: border-color 180ms ease, color 180ms ease;
+}
+
+.abi-theme-button:hover,
+.abi-menu-button:hover {
+  border-color: var(--abi-warm);
+  color: var(--abi-warm) !important;
+}
+
+.abi-nav-cta,
+.abi-mobile-contact {
+  display: inline-flex;
+  min-height: 39px;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 0 16px;
+  border: 1px solid var(--abi-line);
+  border-radius: 999px;
+  font-size: 10px;
+  transition: background 180ms ease, border-color 180ms ease;
+}
+
+.abi-nav-cta:hover {
+  border-color: var(--abi-warm);
+  background: color-mix(in srgb, var(--abi-warm) 10%, transparent);
+}
+
+.abi-menu-button,
+.abi-mobile-contact {
+  display: none;
+}
+
+.abi-hero {
+  position: relative;
+  display: grid;
+  min-height: min(820px, calc(100svh - 73px));
+  padding: 22px;
+  isolation: isolate;
+}
+
+.abi-hero-photo,
+.abi-hero-shade {
+  position: absolute;
+  z-index: -2;
+  inset: 20px;
+  overflow: hidden;
+  border-radius: 22px;
+}
+
+.abi-hero-image {
+  object-fit: cover;
+  object-position: center 42%;
+  filter: saturate(0.55) contrast(1.05);
+  transform: scale(1.025);
+  animation: abi-image-drift 24s ease-in-out infinite alternate;
+}
+
+.abi-hero-shade {
+  z-index: -1;
+  background:
+    linear-gradient(180deg, rgba(17, 18, 17, 0.24), rgba(17, 18, 17, 0.23) 25%, rgba(12, 13, 12, 0.52) 69%, rgba(12, 13, 12, 0.82)),
+    linear-gradient(90deg, rgba(14, 15, 14, 0.38), transparent 50%, rgba(14, 15, 14, 0.18));
+}
+
+.abi-hero-frame {
+  position: relative;
+  display: flex;
+  width: min(1110px, calc(100% - 72px));
+  min-height: 640px;
+  align-items: stretch;
+  justify-self: center;
+  margin: 38px 0 43px;
+  border: 1px solid rgba(241, 238, 230, 0.78);
+  border-radius: 34px;
+  box-shadow: 0 0 0 7px rgba(10, 11, 10, 0.86), 0 22px 65px rgba(0, 0, 0, 0.28);
+}
+
+.abi-hero-frame::before {
+  position: absolute;
+  inset: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 26px;
+  content: "";
+  pointer-events: none;
+}
+
+.abi-hero-inner {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 19px 24px 20px;
+}
+
+.abi-hero-topline,
+.abi-hero-bottomline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  color: rgba(245, 242, 235, 0.78);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 8px;
+  letter-spacing: 0.12em;
+}
+
+.abi-hero-index {
+  display: inline-flex;
+  min-height: 28px;
+  align-items: center;
+  padding-inline: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 999px;
+  background: rgba(15, 16, 15, 0.22);
+  backdrop-filter: blur(12px);
+}
+
+.abi-hero-category {
+  padding: 7px 11px;
+  border-radius: 999px;
+  background: rgba(15, 16, 15, 0.23);
+  backdrop-filter: blur(12px);
+}
+
+.abi-hero-center {
+  width: 100%;
+  margin-top: 40px;
+  text-align: center;
+}
+
+.abi-hero-overline {
+  margin: 0 0 3px;
+  color: rgba(248, 244, 234, 0.9);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(12px, 1.25vw, 16px);
+  font-style: italic;
+  letter-spacing: 0.015em;
+}
+
+.abi-hero h1 {
+  margin: 0;
+  color: #f3f1ec;
+  font-size: clamp(76px, 16.5vw, 219px);
+  font-weight: 500;
+  letter-spacing: -0.105em;
+  line-height: 1.12;
+  white-space: nowrap;
+}
+
+.abi-hero-description {
+  max-width: 505px;
+  margin: 10px auto 0;
+  color: rgba(247, 244, 237, 0.83);
+  font-size: 12px;
+  line-height: 1.9;
+}
+
+.abi-hero-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  margin-top: 25px;
+}
+
+.abi-button {
+  display: inline-flex;
+  min-height: 46px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 0 19px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform 180ms ease, background 180ms ease, color 180ms ease;
+}
+
+.abi-button:hover {
+  transform: translateY(-2px);
+}
+
+.abi-button--light {
+  color: #191916 !important;
+  background: #f1eee8;
+}
+
+.abi-button--light:hover {
+  background: #dfc6a5;
+}
+
+.abi-hero-text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #f1eee8 !important;
+  font-size: 10px;
+  transition: color 180ms ease;
+}
+
+.abi-hero-text-link:hover {
+  color: #e7c59b !important;
+}
+
+.abi-hero-bottomline {
+  color: rgba(245, 242, 235, 0.69);
+  font-size: 7px;
+}
+
+.abi-hero-scroll {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.abi-hero-edge-note {
+  position: absolute;
+  top: 50%;
+  right: 3px;
+  color: var(--abi-dim);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 7px;
+  letter-spacing: 0.13em;
+  writing-mode: vertical-rl;
+}
+
+.abi-positioning {
+  border-block: 1px solid var(--abi-line);
+  background: var(--abi-panel);
+}
+
+.abi-positioning-inner {
+  display: flex;
+  min-height: 80px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.abi-section-kicker {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  color: var(--abi-muted);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 9px;
+  letter-spacing: 0.13em;
+}
+
+.abi-section-kicker > span {
+  color: var(--abi-warm);
+}
+
+.abi-positioning-inner > p {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin: 0;
+  color: var(--abi-ink);
+  font-size: 11px;
+}
+
+.abi-positioning-inner > p > i {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--abi-warm);
+}
+
+.abi-positioning-icon {
+  color: var(--abi-warm);
+}
+
+.abi-section {
+  padding-block: 112px;
+}
+
+.abi-section-intro {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 60px;
+  margin-bottom: 42px;
+}
+
+.abi-section-intro .abi-section-kicker {
+  margin-bottom: 19px;
+}
+
+.abi-section-intro h2,
+.abi-standards h2,
+.abi-contact h2 {
+  margin: 0;
+  font-size: clamp(40px, 5vw, 64px);
+  font-weight: 400;
+  letter-spacing: -0.075em;
+  line-height: 1.1;
+}
+
+.abi-section-intro h2 em,
+.abi-standards h2 em,
+.abi-contact h2 em {
+  color: var(--abi-warm);
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 400;
+}
+
+.abi-section-lede {
+  max-width: 340px;
+  margin: 0 0 7px;
+  color: var(--abi-muted);
+  font-size: 12px;
+  line-height: 1.9;
+}
+
+.abi-service-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 13px;
+}
+
+.abi-service-wrap {
+  height: 100%;
+}
+
+.abi-service-card {
+  position: relative;
+  height: 100%;
+  min-height: 235px;
+  padding: 23px 23px 26px;
+  border: 1px solid var(--abi-line);
+  border-radius: 5px;
+  background: var(--abi-panel);
+  transition: transform 250ms ease, border-color 250ms ease, background 250ms ease;
+}
+
+.abi-service-card:hover {
+  transform: translateY(-5px);
+  border-color: color-mix(in srgb, var(--abi-warm) 55%, var(--abi-line));
+  background: var(--abi-panel-raised);
+}
+
+.abi-service-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--abi-warm);
+}
+
+.abi-service-top > span {
+  color: var(--abi-dim);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 8px;
+  letter-spacing: 0.1em;
+}
+
+.abi-service-card h3 {
+  margin: 46px 0 8px;
+  font-size: clamp(16px, 1.6vw, 20px);
+  font-weight: 400;
+  letter-spacing: -0.04em;
+}
+
+.abi-service-card p {
+  max-width: 290px;
+  margin: 0;
+  color: var(--abi-muted);
+  font-size: 10px;
+  line-height: 1.8;
+}
+
+.abi-service-card > a {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  display: grid;
+  width: 30px;
+  height: 30px;
+  place-items: center;
+  border: 1px solid var(--abi-line);
+  border-radius: 50%;
+  color: var(--abi-muted);
+  transition: color 180ms ease, border-color 180ms ease;
+}
+
+.abi-service-card:hover > a {
+  border-color: var(--abi-warm);
+  color: var(--abi-warm);
+}
+
+.abi-flow-reveal {
+  margin-top: 55px;
+}
+
+.abi-flow-visual {
+  position: relative;
+  padding: 23px 24px 17px;
+  border: 1px solid var(--abi-line);
+  background:
+    linear-gradient(rgba(230, 221, 207, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(230, 221, 207, 0.035) 1px, transparent 1px),
+    var(--abi-panel);
+  background-size: 34px 34px;
+}
+
+.abi-flow-label {
+  color: var(--abi-dim);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 8px;
+  letter-spacing: 0.12em;
+}
+
+.abi-flow-visual svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-block: 2px;
+  overflow: visible;
+}
+
+.abi-flow-path {
+  fill: none;
+  stroke: url("#abi-flow-gradient");
+  stroke-linecap: round;
+  stroke-width: 1.2;
+}
+
+.abi-flow-path--base {
+  stroke: rgba(235, 230, 219, 0.12);
+  stroke-dasharray: none;
+}
+
+.abi-flow-node circle {
+  fill: var(--abi-bg);
+  stroke: rgba(215, 181, 139, 0.68);
+  stroke-width: 1;
+}
+
+.abi-flow-node--service circle {
+  fill: var(--abi-panel);
+  stroke: rgba(235, 230, 219, 0.42);
+}
+
+.abi-flow-node--output circle {
+  fill: var(--abi-panel);
+  stroke: rgba(164, 201, 196, 0.75);
+  filter: url("#abi-flow-glow");
+}
+
+.abi-flow-node text {
+  fill: var(--abi-ink);
+  font-family: var(--font-poppins), sans-serif;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-anchor: middle;
+}
+
+.abi-flow-node .abi-flow-sub {
+  fill: var(--abi-dim);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 5.3px;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+}
+
+.abi-flow-foot {
+  display: flex;
+  justify-content: space-around;
+  gap: 10px;
+  padding-top: 12px;
+  border-top: 1px solid var(--abi-line);
+  color: var(--abi-dim);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 7px;
+  letter-spacing: 0.08em;
+}
+
+.abi-markets {
+  padding-block: 100px;
+  border-block: 1px solid var(--abi-line);
+  background: var(--abi-panel);
+}
+
+.abi-market-intro {
+  align-items: center;
+  margin-bottom: 38px;
+}
+
+.abi-market-globe {
+  margin-right: 7%;
+  color: var(--abi-warm);
+  opacity: 0.78;
+}
+
+.abi-market-grid {
+  display: grid;
+  grid-template-columns: 1.25fr 0.75fr;
+  gap: 14px;
+}
+
+.abi-market-card {
+  position: relative;
+  min-height: 290px;
+  overflow: hidden;
+  padding: 25px 27px;
+  border: 1px solid var(--abi-line);
+  background: var(--abi-bg);
+}
+
+.abi-market-card--global::after {
+  position: absolute;
+  right: -90px;
+  bottom: -240px;
+  width: 360px;
+  height: 360px;
+  border: 1px solid rgba(215, 181, 139, 0.12);
+  border-radius: 50%;
+  box-shadow: 0 0 0 35px rgba(215, 181, 139, 0.025), 0 0 0 70px rgba(215, 181, 139, 0.02);
+  content: "";
+  pointer-events: none;
+}
+
+.abi-market-card-top {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--abi-dim);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 8px;
+  letter-spacing: 0.1em;
+}
+
+.abi-market-icon {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  border: 1px solid var(--abi-line);
+  border-radius: 50%;
+  color: var(--abi-warm);
+}
+
+.abi-market-card h3 {
+  margin: 23px 0 14px;
+  font-size: 25px;
+  font-weight: 400;
+  letter-spacing: -0.055em;
+}
+
+.abi-market-card ul {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.abi-market-card li {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: var(--abi-muted);
+  font-size: 10px;
+}
+
+.abi-market-card li > span {
+  display: grid;
+  width: 22px;
+  height: 22px;
+  flex: 0 0 auto;
+  place-items: center;
+  border: 1px solid var(--abi-line);
+  border-radius: 50%;
+  color: var(--abi-warm);
+}
+
+.abi-market-stamp {
+  position: absolute;
+  right: 23px;
+  bottom: 22px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: var(--abi-dim);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 7px;
+  letter-spacing: 0.1em;
+}
+
+.abi-market-stamp i {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--abi-warm);
+}
+
+.abi-organization {
+  padding-bottom: 100px;
+}
+
+.abi-team-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(310px, 0.8fr);
+  gap: 18px;
+}
+
+.abi-team-list {
+  border-top: 1px solid var(--abi-line);
+}
+
+.abi-team-card {
+  display: grid;
+  grid-template-columns: 42px 1fr auto;
+  align-items: start;
+  gap: 16px;
+  padding: 20px 4px;
+  border-bottom: 1px solid var(--abi-line);
+}
+
+.abi-team-icon {
+  display: grid;
+  width: 38px;
+  height: 38px;
+  place-items: center;
+  border: 1px solid var(--abi-line);
+  border-radius: 50%;
+  color: var(--abi-warm);
+}
+
+.abi-team-role {
+  color: var(--abi-warm);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 8px;
+  letter-spacing: 0.09em;
+}
+
+.abi-team-card h3 {
+  margin: 4px 0;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.abi-team-card p {
+  margin: 0;
+  color: var(--abi-muted);
+  font-size: 9px;
+  line-height: 1.75;
+}
+
+.abi-team-index {
+  color: var(--abi-dim);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 8px;
+}
+
+.abi-team-scale {
+  padding: 23px;
+  border: 1px solid var(--abi-line);
+  background: var(--abi-panel);
+}
+
+.abi-scale-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  color: var(--abi-dim);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 7px;
+  letter-spacing: 0.09em;
+}
+
+.abi-scale-numbers {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-block: 36px 22px;
+}
+
+.abi-scale-numbers > div {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+
+.abi-scale-numbers strong {
+  color: var(--abi-warm);
+  font-size: 68px;
+  font-weight: 300;
+  letter-spacing: -0.09em;
+  line-height: 1;
+}
+
+.abi-scale-numbers span:not(.abi-scale-arrow) {
+  color: var(--abi-muted);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 7px;
+  line-height: 1.7;
+}
+
+.abi-scale-arrow {
+  color: var(--abi-dim);
+}
+
+.abi-scale-roles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.abi-scale-roles span {
+  padding: 5px 8px;
+  border: 1px solid var(--abi-line);
+  border-radius: 999px;
+  color: var(--abi-muted);
+  font-size: 7px;
+}
+
+.abi-team-scale > p {
+  margin: 15px 0 0;
+  color: var(--abi-muted);
+  font-size: 9px;
+  line-height: 1.8;
+}
+
+.abi-roadmap-heading {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-top: 75px;
+  margin-bottom: 20px;
+}
+
+.abi-roadmap-rule {
+  height: 1px;
+  flex: 1;
+  background: var(--abi-line);
+}
+
+.abi-roadmap-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-top: 1px solid var(--abi-line);
+  border-bottom: 1px solid var(--abi-line);
+}
+
+.abi-roadmap-card {
+  min-height: 195px;
+  padding: 18px 22px 22px;
+}
+
+.abi-roadmap-card + .abi-roadmap-card {
+  border-left: 1px solid var(--abi-line);
+}
+
+.abi-roadmap-number {
+  display: inline-grid;
+  width: 28px;
+  height: 28px;
+  place-items: center;
+  border: 1px solid var(--abi-line);
+  border-radius: 50%;
+  color: var(--abi-warm);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 8px;
+}
+
+.abi-roadmap-card h3 {
+  margin: 23px 0 7px;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.abi-roadmap-card p {
+  max-width: 320px;
+  margin: 0;
+  color: var(--abi-muted);
+  font-size: 9px;
+  line-height: 1.8;
+}
+
+.abi-standards {
+  padding-block: 86px;
+  border-block: 1px solid var(--abi-line);
+  background: var(--abi-panel);
+}
+
+.abi-standards-inner {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  align-items: center;
+  gap: clamp(45px, 9vw, 130px);
+}
+
+.abi-standards-copy .abi-section-kicker {
+  margin-bottom: 18px;
+}
+
+.abi-standards h2 {
+  font-size: clamp(39px, 4.5vw, 53px);
+}
+
+.abi-standards-copy > p:last-child {
+  max-width: 330px;
+  margin: 15px 0 0;
+  color: var(--abi-muted);
+  font-size: 10px;
+  line-height: 1.85;
+}
+
+.abi-standard-list {
+  border-top: 1px solid var(--abi-line);
+}
+
+.abi-standard {
+  display: grid;
+  grid-template-columns: 34px minmax(140px, 0.85fr) 1fr;
+  align-items: center;
+  gap: 15px;
+  min-height: 61px;
+  border-bottom: 1px solid var(--abi-line);
+}
+
+.abi-standard > span {
+  color: var(--abi-warm);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 8px;
+}
+
+.abi-standard strong {
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.abi-standard small {
+  color: var(--abi-muted);
+  font-size: 8px;
+}
+
+.abi-platforms {
+  padding-block: 65px;
+}
+
+.abi-platforms-inner {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 15px 30px;
+}
+
+.abi-platforms .abi-section-kicker {
+  margin-bottom: 7px;
+}
+
+.abi-platforms h2 {
+  margin: 0;
+  font-size: 23px;
+  font-weight: 400;
+  letter-spacing: -0.04em;
+}
+
+.abi-platform-chips {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.abi-platform-chips span {
+  display: inline-flex;
+  min-height: 39px;
+  align-items: center;
+  gap: 10px;
+  padding: 0 13px;
+  border: 1px solid var(--abi-line);
+  border-radius: 999px;
+  color: var(--abi-ink);
+  font-size: 9px;
+}
+
+.abi-platform-note {
+  grid-column: 2;
+  margin: 0;
+  color: var(--abi-muted);
+  font-size: 8px;
+  text-align: right;
+}
+
+.abi-contact {
+  padding-block: 104px;
+  border-top: 1px solid var(--abi-line);
+  background: var(--abi-panel);
+}
+
+.abi-contact-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(400px, 0.75fr);
+  align-items: center;
+  gap: clamp(55px, 10vw, 145px);
+}
+
+.abi-contact-copy .abi-section-kicker {
+  margin-bottom: 19px;
+}
+
+.abi-contact h2 {
+  font-size: clamp(40px, 5vw, 60px);
+}
+
+.abi-contact-copy > p:not(.abi-section-kicker) {
+  max-width: 440px;
+  margin: 19px 0 24px;
+  color: var(--abi-muted);
+  font-size: 11px;
+  line-height: 1.9;
+}
+
+.abi-contact-email {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  color: var(--abi-ink) !important;
+  font-size: 10px;
+}
+
+.abi-contact-email svg:first-child {
+  color: var(--abi-warm);
+}
+
+.abi-contact-email svg:last-child {
+  color: var(--abi-dim);
+}
+
+.abi-contact-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 31px;
+}
+
+.abi-contact-tags span {
+  padding: 6px 9px;
+  border: 1px solid var(--abi-line);
+  border-radius: 999px;
+  color: var(--abi-muted);
+  font-size: 7px;
+}
+
+.abi-contact-form-wrap {
+  width: 100%;
+}
+
+.abi-contact-form {
+  display: grid;
+  gap: 15px;
+  padding: 23px;
+  border: 1px solid var(--abi-line);
+  background: var(--abi-bg);
+}
+
+.abi-form-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 3px;
+  color: var(--abi-warm);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 8px;
+  letter-spacing: 0.13em;
+}
+
+.abi-contact-form label {
+  display: grid;
+  gap: 7px;
+}
+
+.abi-contact-form label > span {
+  color: var(--abi-muted);
+  font-size: 9px;
+}
+
+.abi-contact-form label > span > i {
+  margin-left: 5px;
+  color: var(--abi-dim);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 7px;
+  font-style: normal;
+}
+
+.abi-contact-form input,
+.abi-contact-form select,
+.abi-contact-form textarea {
+  width: 100%;
+  min-height: 42px;
+  padding: 10px 12px;
+  border: 1px solid var(--abi-line);
+  border-radius: 2px;
+  outline: none;
+  background: var(--abi-panel);
+  color: var(--abi-ink);
+  font-size: 10px;
+  transition: border-color 180ms ease;
+}
+
+.abi-contact-form input::placeholder,
+.abi-contact-form textarea::placeholder {
+  color: var(--abi-dim);
+}
+
+.abi-contact-form input:focus,
+.abi-contact-form select:focus,
+.abi-contact-form textarea:focus {
+  border-color: var(--abi-warm);
+}
+
+.abi-contact-form select:invalid {
+  color: var(--abi-dim);
+}
+
+.abi-contact-form select option {
+  color: var(--abi-ink);
+  background: var(--abi-panel);
+}
+
+.abi-contact-form textarea {
+  min-height: 86px;
+  resize: vertical;
+}
+
+.abi-button--submit {
+  width: 100%;
+  min-height: 45px;
+  justify-content: space-between;
+  padding-inline: 15px;
+  border-radius: 2px;
+  color: #171612 !important;
+  background: #d5b48d;
+}
+
+.abi-button--submit:hover {
+  background: #e1c49f;
+}
+
+.abi-form-note {
+  margin: -7px 0 0;
+  color: var(--abi-dim);
+  font-size: 8px;
+  text-align: center;
+}
+
+.abi-footer {
+  border-top: 1px solid var(--abi-line);
+}
+
+.abi-footer-top {
+  display: grid;
+  min-height: 100px;
+  grid-template-columns: 1fr 1.5fr 1fr;
+  align-items: center;
+  gap: 24px;
+}
+
+.abi-footer-top > p {
+  max-width: 400px;
+  margin: 0;
+  color: var(--abi-muted);
+  font-size: 9px;
+}
+
+.abi-footer-back {
+  display: inline-flex;
+  align-items: center;
+  justify-self: end;
+  gap: 7px;
+  color: var(--abi-muted) !important;
+  font-size: 9px;
+  transition: color 180ms ease;
+}
+
+.abi-footer-bottom {
+  display: flex;
+  min-height: 48px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  border-top: 1px solid var(--abi-line);
+  color: var(--abi-dim);
+  font-size: 8px;
+}
+
+.abi-footer-bottom a {
+  transition: color 180ms ease;
+}
+
+@keyframes abi-image-drift {
+  from { transform: scale(1.025) translate3d(-0.3%, 0, 0); }
+  to { transform: scale(1.09) translate3d(0.3%, -0.6%, 0); }
+}
+
+@media (max-width: 900px) {
+  .abi-container {
+    width: min(100% - 56px, 760px);
+  }
+
+  .abi-hero {
+    min-height: min(730px, calc(100svh - 70px));
+  }
+
+  .abi-hero-frame {
+    width: calc(100% - 45px);
+    min-height: 570px;
+  }
+
+  .abi-hero h1 {
+    font-size: clamp(75px, 17vw, 145px);
+  }
+
+  .abi-section {
+    padding-block: 88px;
+  }
+
+  .abi-service-card {
+    min-height: 220px;
+    padding-inline: 17px;
+  }
+
+  .abi-service-card h3 {
+    margin-top: 37px;
+    font-size: 16px;
+  }
+
+  .abi-team-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .abi-team-scale {
+    max-width: none;
+  }
+
+  .abi-contact-grid {
+    grid-template-columns: minmax(0, 1fr) minmax(330px, 0.9fr);
+    gap: 40px;
+  }
+}
+
+@media (max-width: 680px) {
+  .abi-container {
+    width: calc(100% - 38px);
+  }
+
+  .abi-nav {
+    min-height: 66px;
+  }
+
+  .abi-nav-links {
+    position: absolute;
+    top: calc(100% + 1px);
+    right: -19px;
+    left: -19px;
+    display: none;
+    align-items: stretch;
+    gap: 0;
+    padding: 10px 19px 18px;
+    border-bottom: 1px solid var(--abi-line);
+    background: var(--abi-panel);
+  }
+
+  .abi-nav-links.is-open {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .abi-nav-links > a:not(.abi-mobile-contact) {
+    padding: 13px 0;
+    border-bottom: 1px solid var(--abi-line);
+  }
+
+  .abi-nav-cta {
+    display: none;
+  }
+
+  .abi-menu-button {
+    display: grid;
+  }
+
+  .abi-mobile-contact {
+    display: inline-flex;
+    justify-content: space-between;
+    margin-top: 13px;
+    border-color: var(--abi-warm);
+    color: var(--abi-ink) !important;
+  }
+
+  .abi-hero {
+    min-height: 690px;
+    padding: 10px;
+  }
+
+  .abi-hero-photo,
+  .abi-hero-shade {
+    inset: 10px;
+    border-radius: 15px;
+  }
+
+  .abi-hero-image {
+    object-position: 47% center;
+  }
+
+  .abi-hero-frame {
+    width: calc(100% - 28px);
+    min-height: 570px;
+    margin-block: 40px 42px;
+    border-radius: 25px;
+    box-shadow: 0 0 0 5px rgba(10, 11, 10, 0.84), 0 18px 40px rgba(0, 0, 0, 0.25);
+  }
+
+  .abi-hero-frame::before {
+    inset: 6px;
+    border-radius: 19px;
+  }
+
+  .abi-hero-inner {
+    padding: 14px 14px 15px;
+  }
+
+  .abi-hero-topline {
+    align-items: flex-start;
+  }
+
+  .abi-hero-index {
+    min-height: 25px;
+    padding-inline: 9px;
+    font-size: 7px;
+  }
+
+  .abi-hero-category {
+    padding: 6px 7px;
+    font-size: 6px;
+    text-align: right;
+  }
+
+  .abi-hero-center {
+    margin-top: 10px;
+  }
+
+  .abi-hero h1 {
+    font-size: clamp(57px, 15.8vw, 108px);
+    letter-spacing: -0.11em;
+  }
+
+  .abi-hero-overline {
+    font-size: 12px;
+  }
+
+  .abi-hero-description {
+    max-width: 360px;
+    margin-top: 10px;
+    font-size: 10px;
+  }
+
+  .abi-hero-actions {
+    flex-direction: column;
+    gap: 13px;
+    margin-top: 20px;
+  }
+
+  .abi-button--light {
+    min-height: 42px;
+  }
+
+  .abi-hero-bottomline {
+    font-size: 6px;
+    letter-spacing: 0.06em;
+  }
+
+  .abi-hero-scroll {
+    gap: 4px;
+  }
+
+  .abi-hero-edge-note {
+    display: none;
+  }
+
+  .abi-positioning-inner {
+    min-height: 91px;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 0 12px;
+    padding-block: 15px;
+  }
+
+  .abi-positioning-inner > .abi-section-kicker {
+    width: calc(100% - 30px);
+  }
+
+  .abi-positioning-icon {
+    margin-left: auto;
+  }
+
+  .abi-positioning-inner > p {
+    flex-wrap: wrap;
+    gap: 6px 9px;
+    font-size: 9px;
+  }
+
+  .abi-section {
+    padding-block: 73px;
+  }
+
+  .abi-section-intro {
+    display: block;
+    margin-bottom: 30px;
+  }
+
+  .abi-section-intro h2,
+  .abi-contact h2 {
+    font-size: clamp(38px, 9vw, 51px);
+  }
+
+  .abi-section-lede {
+    margin-top: 17px;
+    font-size: 10px;
+  }
+
+  .abi-service-grid {
+    grid-template-columns: 1fr;
+    gap: 9px;
+  }
+
+  .abi-service-card {
+    min-height: 187px;
+    padding: 19px;
+  }
+
+  .abi-service-card h3 {
+    margin-top: 28px;
+    font-size: 17px;
+  }
+
+  .abi-service-card p {
+    max-width: calc(100% - 28px);
+  }
+
+  .abi-flow-reveal {
+    margin-top: 30px;
+  }
+
+  .abi-flow-visual {
+    padding: 17px 10px 13px;
+  }
+
+  .abi-flow-visual svg {
+    min-height: 138px;
+  }
+
+  .abi-flow-foot {
+    gap: 3px;
+    font-size: 5px;
+    letter-spacing: 0.02em;
+  }
+
+  .abi-markets {
+    padding-block: 70px;
+  }
+
+  .abi-market-intro {
+    display: flex;
+    align-items: center;
+  }
+
+  .abi-market-globe {
+    width: 48px;
+    height: 48px;
+    margin-right: 0;
+  }
+
+  .abi-market-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .abi-market-card {
+    min-height: 250px;
+    padding: 20px;
+  }
+
+  .abi-market-card h3 {
+    margin-top: 18px;
+    font-size: 22px;
+  }
+
+  .abi-market-stamp {
+    right: 17px;
+    bottom: 16px;
+    font-size: 6px;
+  }
+
+  .abi-team-card {
+    grid-template-columns: 37px 1fr auto;
+    gap: 10px;
+    padding-block: 16px;
+  }
+
+  .abi-team-icon {
+    width: 34px;
+    height: 34px;
+  }
+
+  .abi-team-card h3 {
+    font-size: 12px;
+  }
+
+  .abi-team-scale {
+    padding: 17px;
+  }
+
+  .abi-scale-numbers {
+    margin-block: 28px 18px;
+  }
+
+  .abi-scale-numbers strong {
+    font-size: 59px;
+  }
+
+  .abi-roadmap-heading {
+    gap: 12px;
+    margin-top: 55px;
+  }
+
+  .abi-roadmap-heading .abi-section-kicker {
+    flex: 0 0 auto;
+    font-size: 7px;
+  }
+
+  .abi-roadmap-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .abi-roadmap-card {
+    min-height: 0;
+    padding: 17px 10px 19px;
+  }
+
+  .abi-roadmap-card + .abi-roadmap-card {
+    border-top: 1px solid var(--abi-line);
+    border-left: 0;
+  }
+
+  .abi-roadmap-card h3 {
+    margin-top: 14px;
+  }
+
+  .abi-standards {
+    padding-block: 68px;
+  }
+
+  .abi-standards-inner {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .abi-standards h2 {
+    font-size: 43px;
+  }
+
+  .abi-standard {
+    grid-template-columns: 25px 1fr;
+    gap: 8px 11px;
+    min-height: 64px;
+    padding-block: 10px;
+  }
+
+  .abi-standard small {
+    grid-column: 2;
+    margin-top: -6px;
+  }
+
+  .abi-platforms {
+    padding-block: 50px;
+  }
+
+  .abi-platforms-inner {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .abi-platforms h2 {
+    font-size: 21px;
+  }
+
+  .abi-platform-chips {
+    justify-content: flex-start;
+  }
+
+  .abi-platform-note {
+    grid-column: auto;
+    text-align: left;
+  }
+
+  .abi-contact {
+    padding-block: 72px;
+  }
+
+  .abi-contact-grid {
+    grid-template-columns: 1fr;
+    gap: 33px;
+  }
+
+  .abi-contact-copy > p:not(.abi-section-kicker) {
+    font-size: 10px;
+  }
+
+  .abi-contact-form {
+    gap: 13px;
+    padding: 17px;
+  }
+
+  .abi-footer-top {
+    grid-template-columns: 1fr auto;
+    gap: 13px;
+    padding-block: 20px;
+  }
+
+  .abi-footer-top > p {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    font-size: 8px;
+  }
+
+  .abi-footer-bottom {
+    min-height: 56px;
+    flex-wrap: wrap;
+    gap: 5px 12px;
+    padding-block: 10px;
+    font-size: 7px;
+  }
+}
+
+@media (max-width: 380px) {
+  .abi-container {
+    width: calc(100% - 30px);
+  }
+
+  .abi-hero h1 {
+    font-size: 15vw;
+  }
+
+  .abi-hero-bottomline {
+    font-size: 5px;
+  }
+
+  .abi-scale-heading {
+    font-size: 6px;
+  }
+
+  .abi-scale-roles span {
+    font-size: 6px;
+  }
+
+  .abi-contact-tags span {
+    font-size: 6px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .abi-site *,
+  .abi-site *::before,
+  .abi-site *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+.abi-hero {
+  display: block;
+  min-height: 0;
+  padding: 22px 0 25px;
+}
+
+.abi-hero-meta {
+  display: flex;
+  width: min(1240px, calc(100% - 88px));
+  min-height: 52px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  margin-inline: auto;
+  color: var(--abi-dim);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 9px;
+  letter-spacing: 0.1em;
+}
+
+.abi-hero-portals {
+  display: grid;
+  min-height: min(610px, calc(100svh - 160px));
+  grid-template-columns: 1.08fr 0.92fr;
+  overflow: hidden;
+  border: 1px solid var(--abi-line);
+}
+
+.abi-portal {
+  position: relative;
+  display: flex;
+  min-height: 550px;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  padding: 27px 36px 22px;
+  isolation: isolate;
+}
+
+.abi-portal::before {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background-image: repeating-linear-gradient(133deg, transparent 0, transparent 10px, rgba(255, 255, 255, 0.035) 10px, rgba(255, 255, 255, 0.035) 11px);
+  content: "";
+  pointer-events: none;
+}
+
+.abi-portal--international {
+  color: #f5f4f1;
+  background: #10182b;
+}
+
+.abi-portal--international::after {
+  position: absolute;
+  z-index: -1;
+  right: -120px;
+  bottom: -240px;
+  width: 460px;
+  height: 460px;
+  border: 1px solid rgba(218, 191, 157, 0.16);
+  border-radius: 50%;
+  box-shadow: 0 0 0 42px rgba(218, 191, 157, 0.025), 0 0 0 84px rgba(218, 191, 157, 0.02);
+  content: "";
+}
+
+.abi-portal--local {
+  color: #25241f;
+  background: #e7c77f;
+}
+
+.abi-portal--local::before {
+  background-image: repeating-linear-gradient(133deg, transparent 0, transparent 10px, rgba(50, 44, 31, 0.055) 10px, rgba(50, 44, 31, 0.055) 11px);
+}
+
+.abi-portal-kicker,
+.abi-portal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+}
+
+.abi-portal-kicker {
+  width: fit-content;
+  padding-bottom: 12px;
+  border-bottom: 1px solid currentColor;
+}
+
+.abi-portal--international .abi-portal-kicker {
+  color: #e0bf8f;
+}
+
+.abi-portal--local .abi-portal-kicker {
+  color: rgba(37, 36, 31, 0.68);
+}
+
+.abi-portal-main {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 760px;
+  margin-block: 35px;
+}
+
+.abi-portal-overline {
+  margin: 0 0 13px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 15px;
+  font-style: italic;
+}
+
+.abi-portal-main h1,
+.abi-portal-main h2 {
+  margin: 0;
+  font-size: clamp(45px, 6.5vw, 86px);
+  font-weight: 500;
+  letter-spacing: -0.075em;
+  line-height: 1.06;
+}
+
+.abi-portal-main > p:not(.abi-portal-overline) {
+  max-width: 460px;
+  margin: 18px 0 24px;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.abi-portal--international .abi-portal-main > p:not(.abi-portal-overline) {
+  color: rgba(245, 244, 241, 0.8);
+}
+
+.abi-portal--local .abi-portal-main > p:not(.abi-portal-overline) {
+  color: rgba(37, 36, 31, 0.76);
+}
+
+.abi-button--portal-light {
+  color: #151a25 !important;
+  background: #f3f0e9;
+}
+
+.abi-button--portal-light:hover {
+  background: #ddc7a6;
+}
+
+.abi-button--portal-dark {
+  color: #f6f3eb !important;
+  background: #25241f;
+}
+
+.abi-button--portal-dark:hover {
+  background: #414037;
+}
+
+.abi-portal-footer {
+  padding-top: 15px;
+  border-top: 1px solid currentColor;
+  font-size: 8px;
+}
+
+.abi-portal--international .abi-portal-footer {
+  color: rgba(245, 244, 241, 0.68);
+}
+
+.abi-portal--local .abi-portal-footer {
+  color: rgba(37, 36, 31, 0.65);
+}
+
+.abi-hero-bottomnote {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  margin: 20px 0 0;
+  color: var(--abi-dim);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 8px;
+  letter-spacing: 0.13em;
+}
+
+.abi-why {
+  padding-block: 105px;
+  border-block: 1px solid var(--abi-line);
+  background: var(--abi-panel);
+}
+
+.abi-why-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-top: 1px solid var(--abi-line);
+  border-bottom: 1px solid var(--abi-line);
+}
+
+.abi-why-card {
+  position: relative;
+  min-height: 225px;
+  padding: 23px 25px;
+}
+
+.abi-why-card + .abi-why-card {
+  border-left: 1px solid var(--abi-line);
+}
+
+.abi-why-icon {
+  display: grid;
+  width: 37px;
+  height: 37px;
+  place-items: center;
+  border: 1px solid var(--abi-line);
+  border-radius: 50%;
+  color: var(--abi-warm);
+}
+
+.abi-why-card > strong {
+  display: block;
+  margin-top: 21px;
+  font-size: 45px;
+  font-weight: 400;
+  letter-spacing: -0.08em;
+  line-height: 1;
+}
+
+.abi-why-card > strong > span {
+  margin-left: 3px;
+  color: var(--abi-warm);
+  font-size: 25px;
+}
+
+.abi-why-card h3 {
+  margin: 8px 0 5px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.abi-why-card p {
+  max-width: 270px;
+  margin: 0;
+  color: var(--abi-muted);
+  font-size: 11px;
+  line-height: 1.8;
+}
+
+.abi-pricing {
+  padding-block: 100px;
+  border-block: 1px solid var(--abi-line);
+  background: var(--abi-panel);
+}
+
+.abi-pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 13px;
+}
+
+.abi-price-card {
+  min-height: 270px;
+  padding: 25px;
+  border: 1px solid var(--abi-line);
+  background: var(--abi-bg);
+}
+
+.abi-price-card--europe {
+  color: #f1eee8;
+  background: #10182b;
+}
+
+.abi-price-card--madagascar {
+  color: #27251e;
+  border-color: #e1c47f;
+  background: #e7c77f;
+}
+
+.abi-price-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--abi-warm);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 9px;
+  letter-spacing: 0.11em;
+}
+
+.abi-price-card--madagascar .abi-price-top {
+  color: #5b4b2e;
+}
+
+.abi-price-card > p {
+  margin: 27px 0 0;
+  font-size: 13px;
+}
+
+.abi-price-value {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 2px;
+}
+
+.abi-price-value > strong {
+  font-size: clamp(70px, 9vw, 105px);
+  font-weight: 400;
+  letter-spacing: -0.09em;
+  line-height: 1.1;
+}
+
+.abi-price-value > span {
+  color: currentColor;
+  font-size: 12px;
+  line-height: 1.35;
+  opacity: 0.72;
+}
+
+.abi-price-card > a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 14px;
+  font-size: 10px;
+}
+
+.abi-price-card--europe > a {
+  color: #e6c696;
+}
+
+.abi-price-card--madagascar > a {
+  color: #40361f;
+}
+
+.abi-pricing-note {
+  margin: 14px 0 0;
+  color: var(--abi-muted);
+  font-size: 10px;
+  line-height: 1.75;
+}
+
+.abi-testimonials {
+  padding-block: 100px;
+  border-block: 1px solid var(--abi-line);
+}
+
+.abi-testimonials-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  align-items: center;
+  gap: clamp(40px, 8vw, 100px);
+}
+
+.abi-testimonials-copy .abi-section-kicker {
+  margin-bottom: 18px;
+}
+
+.abi-testimonials-copy h2 {
+  margin: 0;
+  font-size: clamp(40px, 4.7vw, 60px);
+  font-weight: 400;
+  letter-spacing: -0.075em;
+  line-height: 1.1;
+}
+
+.abi-testimonials-copy h2 em {
+  color: var(--abi-warm);
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 400;
+}
+
+.abi-testimonials-copy > p:not(.abi-section-kicker) {
+  max-width: 390px;
+  margin: 17px 0 20px;
+  color: var(--abi-muted);
+  font-size: 12px;
+  line-height: 1.85;
+}
+
+.abi-testimonial-visual {
+  position: relative;
+  min-height: 330px;
+  overflow: hidden;
+  border: 1px solid var(--abi-line);
+  background: var(--abi-panel-raised);
+}
+
+.abi-testimonial-photo-link {
+  position: absolute;
+  inset: 0;
+  display: block;
+}
+
+.abi-testimonial-photo {
+  object-fit: cover;
+  object-position: center;
+  filter: saturate(0.65);
+  transition: transform 650ms cubic-bezier(0.2, 0.7, 0.2, 1), filter 450ms ease;
+}
+
+.abi-testimonial-photo-link:hover .abi-testimonial-photo {
+  transform: scale(1.035);
+  filter: saturate(0.9);
+}
+
+.abi-testimonial-photo-link::after {
+  position: absolute;
+  inset: 30% 0 0;
+  background: linear-gradient(transparent, rgba(15, 17, 16, 0.78));
+  content: "";
+}
+
+.abi-photo-credit {
+  position: absolute;
+  z-index: 1;
+  right: 12px;
+  bottom: 11px;
+  color: #fff;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 8px;
+  letter-spacing: 0.08em;
+}
+
+.abi-testimonial-placeholder {
+  position: absolute;
+  z-index: 2;
+  top: 17px;
+  left: 17px;
+  display: grid;
+  gap: 6px;
+  padding: 13px 15px;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  background: rgba(18, 19, 17, 0.76);
+  color: #f5f1e9;
+  backdrop-filter: blur(12px);
+  pointer-events: none;
+}
+
+.abi-testimonial-placeholder > span {
+  color: #e1c089;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 8px;
+  letter-spacing: 0.1em;
+}
+
+.abi-testimonial-placeholder > strong {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.abi-testimonial-placeholder > p {
+  margin: 0;
+  color: rgba(245, 241, 233, 0.75);
+  font-size: 9px;
+}
+
+@media (max-width: 900px) {
+  .abi-hero-meta {
+    width: calc(100% - 56px);
+  }
+
+  .abi-portal {
+    min-height: 490px;
+    padding: 23px 24px 19px;
+  }
+
+  .abi-portal-main h1,
+  .abi-portal-main h2 {
+    font-size: clamp(43px, 6.8vw, 64px);
+  }
+
+  .abi-portal-main > p:not(.abi-portal-overline) {
+    font-size: 12px;
+  }
+
+  .abi-why,
+  .abi-pricing,
+  .abi-testimonials {
+    padding-block: 82px;
+  }
+}
+
+@media (max-width: 680px) {
+  .abi-hero {
+    padding-top: 9px;
+  }
+
+  .abi-hero-meta {
+    width: calc(100% - 38px);
+    min-height: 43px;
+    gap: 8px;
+    font-size: 6px;
+    letter-spacing: 0.04em;
+  }
+
+  .abi-hero-portals {
+    min-height: 0;
+    grid-template-columns: 1fr;
+  }
+
+  .abi-portal {
+    min-height: 385px;
+    padding: 19px 19px 16px;
+  }
+
+  .abi-portal--local {
+    min-height: 330px;
+  }
+
+  .abi-portal-kicker {
+    padding-bottom: 9px;
+    font-size: 8px;
+  }
+
+  .abi-portal-main {
+    margin-block: 28px;
+  }
+
+  .abi-portal-main h1,
+  .abi-portal-main h2 {
+    font-size: clamp(45px, 12vw, 68px);
+  }
+
+  .abi-portal-overline {
+    font-size: 13px;
+  }
+
+  .abi-portal-main > p:not(.abi-portal-overline) {
+    max-width: 360px;
+    font-size: 12px;
+  }
+
+  .abi-portal-footer {
+    font-size: 7px;
+  }
+
+  .abi-hero-bottomnote {
+    margin-top: 14px;
+  }
+
+  .abi-why {
+    padding-block: 72px;
+  }
+
+  .abi-why-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .abi-why-card {
+    min-height: 185px;
+    padding: 18px 20px;
+  }
+
+  .abi-why-card + .abi-why-card {
+    border-top: 1px solid var(--abi-line);
+    border-left: 0;
+  }
+
+  .abi-why-card > strong {
+    margin-top: 16px;
+    font-size: 39px;
+  }
+
+  .abi-pricing {
+    padding-block: 72px;
+  }
+
+  .abi-pricing-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .abi-price-card {
+    min-height: 242px;
+    padding: 19px;
+  }
+
+  .abi-price-value > strong {
+    font-size: 81px;
+  }
+
+  .abi-pricing-note {
+    font-size: 9px;
+  }
+
+  .abi-testimonials {
+    padding-block: 72px;
+  }
+
+  .abi-testimonials-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .abi-testimonials-copy h2 {
+    font-size: 43px;
+  }
+
+  .abi-testimonials-copy > p:not(.abi-section-kicker) {
+    font-size: 11px;
+  }
+
+  .abi-testimonial-visual {
+    min-height: 260px;
+  }
+}
+
+.abi-site {
+  --abi-ink: #17231f;
+  --abi-muted: #56635d;
+  --abi-dim: #78827c;
+  --abi-bg: #f5f4ef;
+  --abi-panel: #fffefa;
+  --abi-panel-raised: #efeee7;
+  --abi-line: rgba(32, 48, 41, 0.13);
+  --abi-warm: #9c762b;
+  --abi-sage: #dce8dd;
+  position: relative;
+  overflow: clip;
+  color-scheme: light;
+  background-color: var(--abi-bg);
+  background-image:
+    linear-gradient(rgba(46, 61, 52, 0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(46, 61, 52, 0.055) 1px, transparent 1px);
+  background-attachment: fixed;
+  background-size: 56px 56px;
+}
+
+.abi-site[data-abi-theme="light"] {
+  --abi-ink: #17231f;
+  --abi-muted: #56635d;
+  --abi-dim: #78827c;
+  --abi-bg: #f5f4ef;
+  --abi-panel: #fffefa;
+  --abi-panel-raised: #efeee7;
+  --abi-line: rgba(32, 48, 41, 0.13);
+  --abi-warm: #9c762b;
+  --abi-sage: #dce8dd;
+  color-scheme: light;
+}
+
+.abi-site[data-abi-theme="dark"] {
+  --abi-ink: #f1f0eb;
+  --abi-muted: #c1c5bd;
+  --abi-dim: #929a91;
+  --abi-bg: #141916;
+  --abi-panel: #1c231e;
+  --abi-panel-raised: #27302a;
+  --abi-line: rgba(233, 239, 230, 0.15);
+  --abi-warm: #e5c16e;
+  --abi-sage: #394a3e;
+  color-scheme: dark;
+  background-image:
+    linear-gradient(rgba(223, 233, 220, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(223, 233, 220, 0.035) 1px, transparent 1px);
+}
+
+.abi-header {
+  position: fixed;
+  top: 13px;
+  left: 50%;
+  width: min(1190px, calc(100% - 44px));
+  transform: translateX(-50%);
+  border: 0;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--abi-panel) 84%, transparent);
+  box-shadow: 0 8px 32px rgba(28, 36, 31, 0.12);
+  backdrop-filter: blur(20px) saturate(1.25);
+}
+
+.abi-site[data-abi-theme="dark"] .abi-header {
+  background: rgba(27, 35, 29, 0.84);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.24);
+}
+
+.abi-nav {
+  width: 100%;
+  min-height: 65px;
+  margin: 0;
+  padding: 8px 13px 8px 24px;
+}
+
+.abi-brand-monogram {
+  font-size: 15px;
+  letter-spacing: 0.095em;
+}
+
+.abi-nav-links {
+  gap: clamp(17px, 2.7vw, 35px);
+  font-size: 12px;
+}
+
+.abi-nav-actions {
+  gap: 9px;
+}
+
+.abi-theme-button {
+  width: 39px;
+  height: 39px;
+  border-radius: 13px;
+  background: color-mix(in srgb, var(--abi-panel) 90%, transparent);
+}
+
+.abi-nav-cta {
+  min-height: 42px;
+  border-color: transparent;
+  color: #fff !important;
+  background: #1e3028;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.abi-nav-cta:hover {
+  border-color: transparent;
+  background: #315540;
+}
+
+.abi-site[data-abi-theme="dark"] .abi-nav-cta {
+  color: #18251c !important;
+  background: #d3ddc8;
+}
+
+.abi-hero {
+  padding-top: 89px;
+  padding-bottom: 34px;
+}
+
+.abi-hero-meta {
+  min-height: 44px;
+  color: var(--abi-muted);
+  font-size: 10px;
+}
+
+.abi-hero-portals {
+  gap: 14px;
+  min-height: min(600px, calc(100svh - 175px));
+  overflow: visible;
+  border-radius: 27px;
+}
+
+.abi-portal {
+  min-height: 540px;
+  padding: 27px clamp(23px, 3.2vw, 43px) 22px;
+  border: 1px solid rgba(32, 48, 41, 0.09);
+  border-radius: 27px;
+  box-shadow: 0 17px 48px rgba(33, 40, 35, 0.1);
+}
+
+.abi-portal--international {
+  background: #202b42;
+}
+
+.abi-portal--international::after {
+  right: -78px;
+  bottom: -232px;
+  border-color: rgba(224, 195, 139, 0.22);
+  box-shadow: 0 0 0 38px rgba(224, 195, 139, 0.035), 0 0 0 76px rgba(224, 195, 139, 0.025);
+}
+
+.abi-portal--local {
+  border-color: rgba(48, 67, 45, 0.1);
+  background: #dce8ce;
+}
+
+.abi-site[data-abi-theme="dark"] .abi-portal--local {
+  color: #20271f;
+}
+
+.abi-portal-kicker,
+.abi-portal-footer {
+  font-size: 10px;
+  letter-spacing: 0.09em;
+}
+
+.abi-portal-kicker {
+  padding-bottom: 10px;
+}
+
+.abi-portal-main {
+  margin-block: 22px;
+}
+
+.abi-portal-overline {
+  margin-bottom: 11px;
+  font-size: 17px;
+}
+
+.abi-portal-main h1,
+.abi-portal-main h2 {
+  font-size: clamp(48px, 6.1vw, 79px);
+  letter-spacing: -0.07em;
+  line-height: 1.08;
+}
+
+.abi-portal-main > p:not(.abi-portal-overline) {
+  max-width: 475px;
+  margin: 17px 0 21px;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.abi-portal--local .abi-portal-kicker,
+.abi-portal--local .abi-portal-footer {
+  color: rgba(37, 44, 34, 0.7);
+}
+
+.abi-portal--local::after {
+  position: absolute;
+  z-index: -1;
+  right: -45px;
+  bottom: -105px;
+  width: 270px;
+  height: 270px;
+  border: 1px solid rgba(54, 80, 57, 0.16);
+  border-radius: 50%;
+  box-shadow: 0 0 0 25px rgba(54, 80, 57, 0.04), 0 0 0 50px rgba(54, 80, 57, 0.025);
+  content: "";
+}
+
+.abi-hero-bottomnote {
+  color: var(--abi-muted);
+  font-size: 9px;
+}
+
+.abi-positioning {
+  border-block-color: var(--abi-line);
+  background: color-mix(in srgb, var(--abi-panel) 76%, transparent);
+}
+
+.abi-positioning-inner {
+  min-height: 77px;
+}
+
+.abi-section {
+  padding-block: 105px;
+}
+
+.abi-section-intro {
+  margin-bottom: 38px;
+}
+
+.abi-section-intro .abi-section-kicker,
+.abi-approach-copy .abi-section-kicker {
+  color: var(--abi-muted);
+}
+
+.abi-section-intro h2,
+.abi-approach-copy h2,
+.abi-standards h2,
+.abi-contact h2,
+.abi-testimonials-copy h2 {
+  font-size: clamp(39px, 4.65vw, 58px);
+  font-weight: 500;
+  letter-spacing: -0.065em;
+  line-height: 1.13;
+}
+
+.abi-section-intro h2 em,
+.abi-approach-copy h2 em,
+.abi-standards h2 em,
+.abi-contact h2 em,
+.abi-testimonials-copy h2 em {
+  color: #536f55;
+  font-family: var(--font-poppins), sans-serif;
+  font-weight: 500;
+}
+
+.abi-site[data-abi-theme="dark"] .abi-section-intro h2 em,
+.abi-site[data-abi-theme="dark"] .abi-approach-copy h2 em,
+.abi-site[data-abi-theme="dark"] .abi-standards h2 em,
+.abi-site[data-abi-theme="dark"] .abi-contact h2 em,
+.abi-site[data-abi-theme="dark"] .abi-testimonials-copy h2 em {
+  color: #c2d3b3;
+}
+
+.abi-section-lede,
+.abi-approach-intro,
+.abi-testimonials-copy > p:not(.abi-section-kicker) {
+  max-width: 420px;
+  color: var(--abi-muted);
+  font-size: 14px;
+  line-height: 1.85;
+}
+
+.abi-service-grid {
+  gap: 16px;
+}
+
+.abi-service-card {
+  min-height: 263px;
+  padding: 25px;
+  border-color: var(--abi-line);
+  border-radius: 22px;
+  background: var(--abi-panel);
+  box-shadow: 0 7px 22px rgba(34, 44, 37, 0.045);
+}
+
+.abi-service-card:hover {
+  border-color: rgba(63, 107, 72, 0.42);
+  background: var(--abi-panel);
+  box-shadow: 0 16px 34px rgba(34, 44, 37, 0.1);
+}
+
+.abi-service-top {
+  color: #506e53;
+}
+
+.abi-site[data-abi-theme="dark"] .abi-service-top {
+  color: #c5d5b8;
+}
+
+.abi-service-card h3 {
+  margin: 32px 0 8px;
+  font-size: 19px;
+  font-weight: 500;
+  letter-spacing: -0.04em;
+}
+
+.abi-service-card > p {
+  min-height: 46px;
+  max-width: 320px;
+  color: var(--abi-muted);
+  font-size: 13px;
+}
+
+.abi-service-tariff {
+  display: block;
+  max-width: calc(100% - 35px);
+  margin-top: 12px;
+  color: #526e55;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.65;
+}
+
+.abi-site[data-abi-theme="dark"] .abi-service-tariff {
+  color: #c5d5b8;
+}
+
+.abi-service-card > a {
+  right: 20px;
+  bottom: 20px;
+  width: 34px;
+  height: 34px;
+  border-radius: 12px;
+  color: #23332a;
+  background: #e7eee3;
+}
+
+.abi-flow-visual {
+  overflow: hidden;
+  border-color: var(--abi-line);
+  border-radius: 22px;
+  background-color: var(--abi-panel);
+  box-shadow: 0 7px 22px rgba(34, 44, 37, 0.045);
+}
+
+.abi-flow-label,
+.abi-flow-foot {
+  color: var(--abi-muted);
+}
+
+.abi-flow-node circle {
+  fill: var(--abi-panel);
+}
+
+.abi-markets,
+.abi-why,
+.abi-pricing,
+.abi-standards,
+.abi-contact {
+  border-color: var(--abi-line);
+  background: color-mix(in srgb, var(--abi-panel) 78%, transparent);
+}
+
+.abi-market-card {
+  min-height: 305px;
+  border-color: var(--abi-line);
+  border-radius: 22px;
+  background: var(--abi-panel);
+  box-shadow: 0 7px 22px rgba(34, 44, 37, 0.045);
+}
+
+.abi-market-card--global::after {
+  border-color: rgba(75, 110, 75, 0.16);
+  box-shadow: 0 0 0 35px rgba(75, 110, 75, 0.035), 0 0 0 70px rgba(75, 110, 75, 0.025);
+}
+
+.abi-market-icon,
+.abi-principle-icon {
+  color: #527453;
+}
+
+.abi-why {
+  padding-block: 96px;
+}
+
+.abi-why-card {
+  min-height: 238px;
+  padding: 24px 28px;
+}
+
+.abi-why-card > strong {
+  color: #27392d;
+}
+
+.abi-site[data-abi-theme="dark"] .abi-why-card > strong {
+  color: var(--abi-ink);
+}
+
+.abi-why-card p,
+.abi-principles p,
+.abi-market-card li,
+.abi-team-card p,
+.abi-roadmap-card p,
+.abi-standards-copy > p:last-child,
+.abi-contact-copy > p:not(.abi-section-kicker) {
+  color: var(--abi-muted);
+  font-size: 12px;
+}
+
+.abi-price-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.abi-price-tile {
+  display: flex;
+  min-height: 267px;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 21px 22px 18px;
+  border: 1px solid var(--abi-line);
+  border-radius: 22px;
+  background: var(--abi-panel);
+  box-shadow: 0 7px 22px rgba(34, 44, 37, 0.045);
+  transition: transform 230ms ease, box-shadow 230ms ease;
+}
+
+.abi-price-tile:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 35px rgba(34, 44, 37, 0.11);
+}
+
+.abi-price-tile--navy {
+  border-color: #273c33;
+  color: #f3f5ef;
+  background: #24352e;
+}
+
+.abi-price-tile--sage {
+  border-color: #d8e4d4;
+  background: #e4ecdf;
+}
+
+.abi-price-tile--yellow {
+  border-color: #eadcae;
+  background: #f1e7c7;
+}
+
+.abi-site[data-abi-theme="dark"] .abi-price-tile--sage,
+.abi-site[data-abi-theme="dark"] .abi-price-tile--yellow {
+  color: #202720;
+}
+
+.abi-price-tile-top {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  color: #627766;
+}
+
+.abi-price-tile--navy .abi-price-tile-top {
+  color: #d0dfc8;
+}
+
+.abi-price-tile-top > span {
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 9px;
+  letter-spacing: 0.08em;
+}
+
+.abi-price-tile h3 {
+  min-height: 44px;
+  margin: 18px 0 4px;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: -0.035em;
+}
+
+.abi-price-tile-value {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.abi-price-tile-value > strong {
+  font-size: clamp(32px, 3.6vw, 46px);
+  font-weight: 500;
+  letter-spacing: -0.075em;
+  line-height: 1.2;
+}
+
+.abi-price-tile-value > span {
+  color: var(--abi-muted);
+  font-size: 11px;
+}
+
+.abi-price-tile--navy .abi-price-tile-value > span {
+  color: rgba(243, 245, 239, 0.74);
+}
+
+.abi-price-tile > p {
+  flex: 1;
+  margin: 7px 0 13px;
+  color: var(--abi-muted);
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.abi-price-tile--navy > p {
+  color: rgba(243, 245, 239, 0.8);
+}
+
+.abi-price-tile > a {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: #385b40;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.abi-price-tile--navy > a {
+  color: #e4cb91;
+}
+
+.abi-pricing-note {
+  margin-top: 16px;
+  color: var(--abi-muted);
+  font-size: 11px;
+}
+
+.abi-team-card {
+  padding-block: 22px;
+}
+
+.abi-team-icon {
+  color: #527453;
+  background: var(--abi-panel);
+}
+
+.abi-team-card h3 {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.abi-team-scale,
+.abi-roadmap-card {
+  border-radius: 22px;
+  background: var(--abi-panel);
+}
+
+.abi-team-scale {
+  border: 1px solid var(--abi-line);
+  box-shadow: 0 7px 22px rgba(34, 44, 37, 0.045);
+}
+
+.abi-roadmap-grid {
+  gap: 13px;
+  border: 0;
+}
+
+.abi-roadmap-card {
+  min-height: 218px;
+  border: 1px solid var(--abi-line);
+}
+
+.abi-roadmap-card + .abi-roadmap-card {
+  border-left: 1px solid var(--abi-line);
+}
+
+.abi-roadmap-card h3 {
+  font-size: 19px;
+  font-weight: 500;
+}
+
+.abi-standard strong {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.abi-standard small {
+  font-size: 11px;
+}
+
+.abi-testimonial-visual {
+  min-height: 360px;
+  border-radius: 24px;
+  box-shadow: 0 12px 35px rgba(28, 34, 30, 0.12);
+}
+
+.abi-contact-form {
+  gap: 17px;
+  padding: 27px;
+  border-color: var(--abi-line);
+  border-radius: 22px;
+  background: var(--abi-panel);
+  box-shadow: 0 12px 35px rgba(28, 34, 30, 0.075);
+}
+
+.abi-contact-form label > span {
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.abi-contact-form input,
+.abi-contact-form select,
+.abi-contact-form textarea {
+  min-height: 47px;
+  border-radius: 12px;
+  background: var(--abi-bg);
+  font-size: 13px;
+}
+
+.abi-contact-form textarea {
+  min-height: 100px;
+}
+
+.abi-button--submit {
+  min-height: 49px;
+  border-radius: 999px;
+  color: #fff !important;
+  background: #253a2d;
+  font-size: 12px;
+}
+
+.abi-button--submit:hover {
+  background: #355a40;
+}
+
+.abi-form-note {
+  font-size: 10px;
+}
+
+.abi-footer {
+  border-color: var(--abi-line);
+  background: var(--abi-panel);
+}
+
+.abi-floating-actions {
+  position: fixed;
+  z-index: 20;
+  right: 22px;
+  bottom: 22px;
+  display: grid;
+  gap: 9px;
+}
+
+.abi-floating-actions > a {
+  display: grid;
+  width: 46px;
+  height: 46px;
+  place-items: center;
+  border: 1px solid var(--abi-line);
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--abi-panel) 86%, transparent);
+  box-shadow: 0 6px 21px rgba(26, 34, 29, 0.11);
+  color: var(--abi-ink);
+  backdrop-filter: blur(14px);
+  transition: transform 180ms ease, color 180ms ease, background 180ms ease;
+}
+
+.abi-floating-actions > a:hover {
+  transform: translateY(-2px);
+  color: #fff;
+  background: #31543a;
+}
+
+@media (max-width: 900px) {
+  .abi-header {
+    width: calc(100% - 34px);
+  }
+
+  .abi-nav {
+    padding-left: 19px;
+  }
+
+  .abi-nav-links {
+    gap: 16px;
+  }
+
+  .abi-price-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 680px) {
+  .abi-header {
+    top: 9px;
+    width: calc(100% - 22px);
+  }
+
+  .abi-nav {
+    min-height: 57px;
+    padding: 7px 9px 7px 16px;
+  }
+
+  .abi-brand-monogram {
+    font-size: 13px;
+  }
+
+  .abi-theme-button,
+  .abi-menu-button {
+    width: 37px;
+    height: 37px;
+    border-radius: 12px;
+  }
+
+  .abi-nav-links {
+    right: -1px;
+    left: -1px;
+    padding: 10px 18px 18px;
+    border: 1px solid var(--abi-line);
+    border-radius: 0 0 22px 22px;
+    box-shadow: 0 16px 28px rgba(28, 36, 31, 0.12);
+  }
+
+  .abi-hero {
+    padding-top: 75px;
+  }
+
+  .abi-hero-meta {
+    width: calc(100% - 34px);
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 4px 14px;
+    font-size: 7px;
+  }
+
+  .abi-hero-portals {
+    gap: 11px;
+    border-radius: 22px;
+  }
+
+  .abi-portal {
+    border-radius: 22px;
+    box-shadow: 0 11px 26px rgba(33, 40, 35, 0.09);
+  }
+
+  .abi-portal-main h1,
+  .abi-portal-main h2 {
+    font-size: clamp(43px, 11vw, 63px);
+  }
+
+  .abi-portal-main > p:not(.abi-portal-overline) {
+    font-size: 13px;
+  }
+
+  .abi-hero-meta,
+  .abi-portal-kicker,
+  .abi-portal-footer,
+  .abi-hero-bottomnote {
+    font-size: 9px;
+  }
+
+  .abi-section {
+    padding-block: 72px;
+  }
+
+  .abi-section-intro h2,
+  .abi-contact h2,
+  .abi-testimonials-copy h2 {
+    font-size: clamp(37px, 9vw, 48px);
+  }
+
+  .abi-section-lede,
+  .abi-approach-intro {
+    font-size: 13px;
+  }
+
+  .abi-service-card {
+    min-height: 225px;
+    padding: 21px;
+    border-radius: 19px;
+  }
+
+  .abi-service-card h3 {
+    margin-top: 27px;
+    font-size: 18px;
+  }
+
+  .abi-service-card > p {
+    min-height: 0;
+    margin-bottom: 7px;
+    font-size: 13px;
+  }
+
+  .abi-service-tariff {
+    font-size: 12px;
+  }
+
+  .abi-price-tile-top > span,
+  .abi-price-tile-value > span,
+  .abi-price-tile > p,
+  .abi-pricing-note {
+    font-size: 12px;
+  }
+
+  .abi-market-card li,
+  .abi-why-card p,
+  .abi-principles p,
+  .abi-team-card p,
+  .abi-roadmap-card p,
+  .abi-standards-copy > p:last-child {
+    font-size: 13px;
+  }
+
+  .abi-market-stamp {
+    font-size: 9px;
+  }
+
+  .abi-market-card,
+  .abi-team-scale,
+  .abi-roadmap-card,
+  .abi-testimonial-visual,
+  .abi-contact-form {
+    border-radius: 19px;
+  }
+
+  .abi-price-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .abi-price-tile {
+    min-height: 215px;
+    padding: 19px;
+    border-radius: 19px;
+  }
+
+  .abi-price-tile h3 {
+    min-height: 0;
+    font-size: 16px;
+  }
+
+  .abi-price-tile-value > strong {
+    font-size: 39px;
+  }
+
+  .abi-price-tile > p {
+    font-size: 11px;
+  }
+
+  .abi-floating-actions {
+    right: 14px;
+    bottom: 14px;
+    gap: 7px;
+  }
+
+  .abi-floating-actions > a {
+    width: 42px;
+    height: 42px;
+  }
+}

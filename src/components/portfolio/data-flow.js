@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useEffect, useState } from "react";
+import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -14,15 +14,9 @@ if (typeof window !== "undefined") {
 export default function DataFlow() {
   const graphic = useRef(null);
   const reduceMotion = useReducedMotion();
-  const [isClient, setIsClient] = useState(false);
-
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
 
   useGSAP(
     () => {
-      if (!isClient) return;
       if (reduceMotion || !graphic.current) return;
 
       const route = graphic.current.querySelector(".flow-route-active");
@@ -58,14 +52,14 @@ export default function DataFlow() {
           "-=0.62"
         );
     },
-    { scope: graphic, dependencies: [reduceMotion, isClient], revertOnUpdate: true }
+    { scope: graphic, dependencies: [reduceMotion], revertOnUpdate: true }
   );
 
   return (
     <div className="flow-canvas" ref={graphic}>
       <div className="flow-caption">
         <span>DATA LINEAGE / 01</span>
-        <span>DE LA SOURCE À L'USAGE</span>
+        <span>DE LA SOURCE À L&apos;USAGE</span>
       </div>
       <svg
         className="flow-svg"

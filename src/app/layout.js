@@ -1,18 +1,17 @@
-import { Geist, Geist_Mono } from "next/font/google";
-import localFont from "next/font/local";
+import { Geist_Mono, Poppins } from "next/font/google";
 import "./globals.css";
-import "./portfolio.css";
 
 export const viewport = {
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
-  themeColor: "#f1f3ed",
+  themeColor: "#080b12",
 };
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const poppins = Poppins({
+  variable: "--font-poppins",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
 });
 
 const geistMono = Geist_Mono({
@@ -20,17 +19,10 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const safiraMarch = localFont({
-  src: "../../public/fonts/Safira March Personal Use Only.ttf",
-  variable: "--font-safira-march",
-  weight: "400",
-  display: "swap",
-});
-
 export const metadata = {
-  title: "ABI-MDG | Advanced Business Intelligence - MADAGASCAR",
+  title: "ABI-MDG | Services numériques spécialisés en traitement de données",
   description:
-    "L'intelligence des données au service de la performance de votre entreprise. Data Analyst et Data Engineer orienté pipelines. Études de cas en intégration de données, Business Intelligence, Machine Learning et automatisation.",
+    "Une entreprise de services du numérique spécialisée dans le traitement de données. Des experts à distance qui transforment vos données en décisions, pour des clients à l’international comme sur le marché local.",
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
@@ -48,9 +40,9 @@ export default function RootLayout({ children }) {
   return (
     <html
       lang="fr"
-      className={`${geistSans.variable} ${geistMono.variable} ${safiraMarch.variable} h-full antialiased`}
+      className={`${poppins.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col portfolio-body">{children}</body>
+      <body className="min-h-full flex flex-col">{children}</body>
     </html>
   );
 }
